@@ -182,7 +182,7 @@ inline double optics_timer_elapsed(optics_timer_t *t0, double scale)
 
     uint64_t secs = t1.tv_sec - t0->tv_sec;
     uint64_t nanos = t1.tv_nsec - t0->tv_nsec;
-    return (secs * 1UL * 1000 * 1000 * 1000 + nanos) * scale;
+    return (secs * 1000 * 1000 * 1000 + nanos) * scale;
 }
 
 
@@ -201,7 +201,8 @@ union optics_poll_value
 struct optics_poll
 {
     const char *host;
-    struct optics_key *key;
+    const char *prefix;
+    const char *key;
 
     enum optics_lens_type type;
     union optics_poll_value value;
